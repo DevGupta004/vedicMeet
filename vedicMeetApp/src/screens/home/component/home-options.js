@@ -1,14 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import IconComponent from '../../../components/icon/icon-component';
 
-export default HomeOptions = () => {
+export default HomeOptions = (props) => {
+
+
+    const showShortListedItem = () => {
+        console.log('showShortListedItem clicked');
+        props.onPress();
+      }
+
   const iconsData = [
     {name: 'book', text: 'Contacts', size: 40, color: '#dea74f'},
     {name: 'image', text: 'Gallery', size: 40, color: '#3b302f'},
     {name: 'map-marker-alt', text: 'map', size: 40, color: 'gray'},
-    {name: 'id-card-alt', text: 'Shortlisted', size: 40, color: '#3b302f'},
+    {name: 'id-card-alt', text: 'Shortlisted', size: 40, color: '#3b302f', function:showShortListedItem},
     {name: 'sort-amount-down-alt', text: 'Short', size: 40, color: '#3b302f'},
   ];
+
 
   return (
     <View style={styles.container}>
@@ -21,6 +29,7 @@ export default HomeOptions = () => {
                 size={icon.size}
                 style={styles.icon}
                 color={icon.color}
+                fun={() => icon.function}
               />
               <Text style={styles.iconText}>{icon.text}</Text>
             </View>
@@ -35,6 +44,7 @@ export default HomeOptions = () => {
                 size={icon.size}
                 style={styles.icon}
                 color={icon.color}
+                onPress={icon.function}
               />
               <Text style={styles.iconText}>{icon.text}</Text>
             </View>
