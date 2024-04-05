@@ -10,11 +10,11 @@ export default HomeOptions = (props) => {
       }
 
   const iconsData = [
-    {name: 'book', text: 'Contacts', size: 40, color: '#dea74f'},
-    {name: 'image', text: 'Gallery', size: 40, color: '#3b302f'},
-    {name: 'map-marker-alt', text: 'map', size: 40, color: 'gray'},
-    {name: 'id-card-alt', text: 'Shortlisted', size: 40, color: '#3b302f', function:showShortListedItem},
-    {name: 'sort-amount-down-alt', text: 'Short', size: 40, color: '#3b302f'},
+    {name: 'newspaper-outline', text: 'Contacts', size: 40, color: '#dea74f', type: 0},
+    {name: 'image', text: 'Gallery', size: 40, color: '#3b302f', type: 1},
+    {name: 'map-marker-alt', text: 'map', size: 40, color: 'gray', type: 1},
+    {name: 'id-card-alt', text: 'Shortlisted', size: 40, color: '#3b302f', type: 1, function:showShortListedItem},
+    {name: 'sort-amount-down-alt', text: 'Short', size: 40, color: '#3b302f', type: 1},
   ];
 
 
@@ -29,9 +29,10 @@ export default HomeOptions = (props) => {
                 size={icon.size}
                 style={styles.icon}
                 color={icon.color}
-                fun={() => icon.function}
+                type={icon.type}
+                onPress={() => icon.function}
               />
-              <Text style={styles.iconText}>{icon.text}</Text>
+              <Text style={[styles.iconText, index === 0 ?  {color: '#dea74f'} : {color: icon.color}]}>{icon.text}</Text>
             </View>
           ))}
         </View>
@@ -44,6 +45,7 @@ export default HomeOptions = (props) => {
                 size={icon.size}
                 style={styles.icon}
                 color={icon.color}
+                type={icon.type}
                 onPress={icon.function}
               />
               <Text style={styles.iconText}>{icon.text}</Text>
@@ -57,6 +59,7 @@ export default HomeOptions = (props) => {
 
 export const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fefffe',
     borderBottomColor: '#D3D3D3',
     borderBottomWidth: 1,
   },
