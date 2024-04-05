@@ -44,9 +44,9 @@ const CourseList = () => {
         description:
           'Master React Native development with this comprehensive course.',
         rating: 2.5,
-        price: '$99.99',
-        courseDuration: '10',
-        totalEnrolled: 1000,
+        price: '$99',
+        courseDuration: '6',
+        totalEnrolled: 30,
         contact: {
           phone1: '+91 9876543210',
           phone2: '+91 9876543210',
@@ -215,14 +215,11 @@ const styles = StyleSheet.create({
   },
   evenBackground: {backgroundColor: '#fefdf2'},
   oddBackground: {backgroundColor: '#fff'},
-  courseDetailsContainer: {
-    flex: 1,
-  },
   courseTitle: {
     color: '#000',
     fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   courseDescription: {
     color: '#000',
@@ -236,15 +233,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   ratingIcon: {
-    marginRight: 5,
+    marginRight: 8,
   },
   ratingText: {
     fontSize: 16,
     marginBottom: 5,
   },
   contactContainer: {
-    paddingVertical: 24,
-    // marginBottom: 10,
+    flex: 1
   },
   contactTitle: {
     fontSize: 16,
@@ -257,12 +253,13 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   detailsRowContainer: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
   },
   detailsDataColumn: {
-    flex: 1,
+    marginEnd: 32,
     alignItems: 'center',
   },
   detailsData: {
