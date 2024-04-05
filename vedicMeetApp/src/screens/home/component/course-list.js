@@ -5,7 +5,7 @@ import IconComponent from '../../../components/icon/icon-component';
 const CourseList = () => {
   // State to manage the visibility of Shortlisted icon for each course
   const [shortListedIcons, setShortListedIcons] = useState(
-    new Array(2).fill('bookmark-outline'),
+    new Array(20).fill('bookmark-outline'),
   );
 
   // Function to render course details
@@ -27,9 +27,9 @@ const CourseList = () => {
       },
       // Add more courses as needed
       {
-        title: 'React Native Development',
+        title: 'Python Crash Course',
         description:
-          'Master React Native development with this comprehensive course.',
+          'Master React Native development with this comprehensive course',
         rating: 4,
         price: '$59',
         courseDuration: '12',
@@ -37,6 +37,19 @@ const CourseList = () => {
         contact: {
           phone1: '+91 9824524545',
           phone2: '+91 9842311778',
+        },
+      },
+      {
+        title: 'React Native Development',
+        description:
+          'Master React Native development with this comprehensive course.',
+        rating: 2.5,
+        price: '$99',
+        courseDuration: '6',
+        totalEnrolled: 30,
+        contact: {
+          phone1: '+91 9876543210',
+          phone2: '+91 9876543210',
         },
       },
       {
@@ -93,7 +106,9 @@ const CourseList = () => {
               </View>
 
               {/* Description */}
-              <Text style={styles.courseDescription}>{course.description}</Text>
+              <View style={styles.courseDescriptionContainer}>
+                 <Text style={styles.courseDescription}>{course.description}</Text>
+              </View>
 
               {/* Row for totalEnrolled, courseDuration, and price */}
               <View style={styles.detailsRowContainer}>
@@ -221,11 +236,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 12,
   },
+  courseDescriptionContainer: {
+    lineHeight: 24,
+    paddingVertical: 12,
+  },
   courseDescription: {
     color: '#000',
     fontSize: 16,
     lineHeight: 24,
-    paddingVertical: 12,
   },
   ratingContainer: {
     flexDirection: 'row',
