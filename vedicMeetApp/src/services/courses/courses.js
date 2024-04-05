@@ -6,7 +6,7 @@ async function getAllCourses() {
     try {
         const response = await apiService.get(endPoint);
         console.log("getAllCourses fetched", response.data.courses);
-        return response.data;
+        return response.data.courses;
     } catch (error) {
         throw error;
     }

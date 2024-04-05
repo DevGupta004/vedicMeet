@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import IconComponent from '../../../components/icon/icon-component';
 import coursesService from '../../../services/courses/courses';
 
-const CourseList =  () => {
+const CourseList = () => {
   // State to manage the visibility of Shortlisted icon for each course
-  const [shortListedIcons, setShortListedIcons] = useState(new Array(200).fill('bookmark-outline'));
-  const [coursesData, setCoursesData] = useState([]);
-
+  const [shortListedIcons, setShortListedIcons] = useState(
+    new Array(200).fill('bookmark-outline'),
+  );
+  const [getCourseData, setCourseData] = useState([]);
 
   useEffect(() => {
-     coursesService.getAllCourses().then(courses => {
-        setCoursesData(courses);
-        })
-
+    coursesService.getAllCourses().then(courses => {
+      setCourseData(courses);
+    });
   }, []);
 
-   // Dummy data
-   let courseData = [
+  // Dummy data
+  let courseData = [
     {
       title: 'React Native Development',
       description:
@@ -73,14 +73,12 @@ const CourseList =  () => {
     },
   ];
 
-if(coursesData.courses) {
-    courseData = coursesData.courses;
-}
+  if (getCourseData) {
+    courseData = getCourseData;
+  }
 
   // Function to render course details
   const renderCourseDetails = () => {
-   
-
     return (
       <View style={styles.container}>
         {courseData.map((course, index) => (
@@ -89,8 +87,7 @@ if(coursesData.courses) {
             style={[
               styles.coursesContainer,
               index % 2 === 0 ? styles.evenBackground : styles.oddBackground,
-            ]}
-          >
+            ]}>
             <View style={styles.courseDetailsContainer}>
               {/* Title */}
               <Text style={styles.courseTitle}>{course.title}</Text>
@@ -240,8 +237,8 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     paddingHorizontal: 24,
   },
-  evenBackground: { backgroundColor: '#fefdf2' },
-  oddBackground: { backgroundColor: '#fff' },
+  evenBackground: {backgroundColor: '#fefdf2'},
+  oddBackground: {backgroundColor: '#fff'},
   courseDetailsContainer: {
     flex: 1,
     marginRight: 16, // Add some margin between title/description and remaining details
