@@ -1,69 +1,85 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import IconComponent from '../../../components/icon/icon-component';
+import coursesService from '../../../services/courses/courses';
 
-const CourseList = () => {
+const CourseList =  () => {
   // State to manage the visibility of Shortlisted icon for each course
   const [shortListedIcons, setShortListedIcons] = useState(new Array(200).fill('bookmark-outline'));
+  const [coursesData, setCoursesData] = useState([]);
+
+
+  useEffect(() => {
+     coursesService.getAllCourses().then(courses => {
+        setCoursesData(courses);
+        })
+
+  }, []);
+
+   // Dummy data
+   let courseData = [
+    {
+      title: 'React Native Development',
+      description:
+        'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
+      rating: 4.5,
+      price: '$99',
+      courseDuration: '6',
+      totalEnrolled: 57,
+      contact: {
+        phone1: '+91 9824524545',
+        phone2: '+91 9842311778',
+      },
+    },
+    // Add more courses as needed
+    {
+      title: 'Python Crash Course',
+      description:
+        'Master React Native development with this comprehensive course',
+      rating: 4,
+      price: '$59',
+      courseDuration: '12',
+      totalEnrolled: 10,
+      contact: {
+        phone1: '+91 9824524545',
+        phone2: '+91 9842311778',
+      },
+    },
+    {
+      title: 'React Native Development',
+      description:
+        'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
+      rating: 2.5,
+      price: '$99',
+      courseDuration: '6',
+      totalEnrolled: 30,
+      contact: {
+        phone1: '+91 9876543210',
+        phone2: '+91 9876543210',
+      },
+    },
+    {
+      title: 'React Native Development',
+      description:
+        'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
+      rating: 2.5,
+      price: '$99',
+      courseDuration: '6',
+      totalEnrolled: 30,
+      contact: {
+        phone1: '+91 9876543210',
+        phone2: '+91 9876543210',
+      },
+    },
+  ];
+
+if(coursesData.courses) {
+    courseData = coursesData.courses;
+}
 
   // Function to render course details
   const renderCourseDetails = () => {
-    // Dummy data
-    const courseData = [
-      {
-        title: 'React Native Development',
-        description:
-          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
-        rating: 4.5,
-        price: '$99',
-        courseDuration: '6',
-        totalEnrolled: 57,
-        contact: {
-          phone1: '+91 9824524545',
-          phone2: '+91 9842311778',
-        },
-      },
-      // Add more courses as needed
-      {
-        title: 'Python Crash Course',
-        description:
-          'Master React Native development with this comprehensive course',
-        rating: 4,
-        price: '$59',
-        courseDuration: '12',
-        totalEnrolled: 10,
-        contact: {
-          phone1: '+91 9824524545',
-          phone2: '+91 9842311778',
-        },
-      },
-      {
-        title: 'React Native Development',
-        description:
-          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
-        rating: 2.5,
-        price: '$99',
-        courseDuration: '6',
-        totalEnrolled: 30,
-        contact: {
-          phone1: '+91 9876543210',
-          phone2: '+91 9876543210',
-        },
-      },
-      {
-        title: 'React Native Development',
-        description:
-          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
-        rating: 2.5,
-        price: '$99',
-        courseDuration: '6',
-        totalEnrolled: 30,
-        contact: {
-          phone1: '+91 9876543210',
-          phone2: '+91 9876543210',
-        },
-      },
-    ];
+   
 
     return (
       <View style={styles.container}>
