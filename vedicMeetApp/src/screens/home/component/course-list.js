@@ -229,6 +229,7 @@ const CourseList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   coursesContainer: {
     flexDirection: 'row',
