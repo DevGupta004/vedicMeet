@@ -1,1 +1,1 @@
-# vedicMeet
+# vedicMeet App And API
