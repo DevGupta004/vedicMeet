@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import IconComponent from '../../../components/icon/icon-component';
 
 const CourseList = () => {
   // State to manage the visibility of Shortlisted icon for each course
-  const [shortListedIcons, setShortListedIcons] = useState(
-    new Array(20).fill('bookmark-outline'),
-  );
+  const [shortListedIcons, setShortListedIcons] = useState(new Array(200).fill('bookmark-outline'));
 
   // Function to render course details
   const renderCourseDetails = () => {
@@ -15,7 +13,7 @@ const CourseList = () => {
       {
         title: 'React Native Development',
         description:
-          'Master React Native development with this comprehensive course.',
+          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
         rating: 4.5,
         price: '$99',
         courseDuration: '6',
@@ -42,7 +40,7 @@ const CourseList = () => {
       {
         title: 'React Native Development',
         description:
-          'Master React Native development with this comprehensive course.',
+          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
         rating: 2.5,
         price: '$99',
         courseDuration: '6',
@@ -55,7 +53,7 @@ const CourseList = () => {
       {
         title: 'React Native Development',
         description:
-          'Master React Native development with this comprehensive course.',
+          'Master React Native development with this comprehensive course. This is a long description that will wrap to multiple lines if it exceeds the width of its container.',
         rating: 2.5,
         price: '$99',
         courseDuration: '6',
@@ -75,39 +73,39 @@ const CourseList = () => {
             style={[
               styles.coursesContainer,
               index % 2 === 0 ? styles.evenBackground : styles.oddBackground,
-            ]}>
-            <View>
+            ]}
+          >
+            <View style={styles.courseDetailsContainer}>
               {/* Title */}
               <Text style={styles.courseTitle}>{course.title}</Text>
 
-              {/* Rating with icon */}
+              {/* Rating */}
               <View style={styles.ratingContainer}>
-                <View style={styles.ratingContainer}>
-                  {[...Array(Math.floor(course.rating))].map((_, index) => (
-                    <IconComponent
-                      key={index}
-                      name="star"
-                      size={16}
-                      color="black"
-                      style={styles.ratingIcon}
-                    />
-                  ))}
-                  {/* If the rating has a decimal value, render a half star */}
-                  {course.rating % 1 !== 0 && (
-                    <IconComponent
-                      name="star-half"
-                      size={16}
-                      color="black"
-                      style={styles.ratingIcon}
-                    />
-                  )}
-                </View>
-                {/* <Text style={styles.ratingText}>{course.rating}</Text> */}
+                {[...Array(Math.floor(course.rating))].map((_, index) => (
+                  <IconComponent
+                    key={index}
+                    name="star"
+                    size={16}
+                    color="black"
+                    style={styles.ratingIcon}
+                  />
+                ))}
+                {/* If the rating has a decimal value, render a half star */}
+                {course.rating % 1 !== 0 && (
+                  <IconComponent
+                    name="star-half"
+                    size={16}
+                    color="black"
+                    style={styles.ratingIcon}
+                  />
+                )}
               </View>
 
               {/* Description */}
               <View style={styles.courseDescriptionContainer}>
-                 <Text style={styles.courseDescription}>{course.description}</Text>
+                <Text style={styles.courseDescription} numberOfLines={2}>
+                  {course.description}
+                </Text>
               </View>
 
               {/* Row for totalEnrolled, courseDuration, and price */}
@@ -135,12 +133,11 @@ const CourseList = () => {
 
               {/* Contact Info */}
               <View style={styles.contactContainer}>
-                {/* <Text style={styles.contactTitle}>Contact Info</Text> */}
                 <Text style={styles.contactText}>{course.contact.phone1}</Text>
                 <Text style={styles.contactText}>{course.contact.phone2}</Text>
               </View>
             </View>
-            <View style={styles.verticalLine}></View>
+
             {/* Render icons */}
             {renderIcons(index)}
           </View>
@@ -150,7 +147,6 @@ const CourseList = () => {
   };
 
   // Function to render icons
-  // Function to render icons for a specific course
   const renderIcons = index => {
     // Function to toggle the Shortlisted icon for a specific course
     const showShortListedItem = () => {
@@ -223,13 +219,17 @@ const styles = StyleSheet.create({
   },
   coursesContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between', // Adjust as needed
     alignItems: 'flex-start',
     paddingVertical: 24,
-    paddingLeft: 16,
+    paddingHorizontal: 24,
   },
-  evenBackground: {backgroundColor: '#fefdf2'},
-  oddBackground: {backgroundColor: '#fff'},
+  evenBackground: { backgroundColor: '#fefdf2' },
+  oddBackground: { backgroundColor: '#fff' },
+  courseDetailsContainer: {
+    flex: 1,
+    marginRight: 16, // Add some margin between title/description and remaining details
+  },
   courseTitle: {
     color: '#000',
     fontSize: 22,
@@ -237,13 +237,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   courseDescriptionContainer: {
-    lineHeight: 24,
-    paddingVertical: 12,
+    marginBottom: 12,
+    paddingVertical: 16,
   },
   courseDescription: {
     color: '#000',
     fontSize: 16,
     lineHeight: 24,
+    flexWrap: 'wrap',
+    marginBottom: 8, // Add some margin to separate it from other elements
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -253,17 +255,8 @@ const styles = StyleSheet.create({
   ratingIcon: {
     marginRight: 8,
   },
-  ratingText: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
   contactContainer: {
-    flex: 1
-  },
-  contactTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
+    paddingVertical: 32,
   },
   contactText: {
     fontSize: 24,
@@ -271,27 +264,23 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   detailsRowContainer: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 16,
   },
   detailsDataColumn: {
-    marginEnd: 32,
+    marginEnd: 56,
     alignItems: 'center',
   },
   detailsData: {
     color: '#000',
-    fontSize: 32,
+    fontSize: 40,
     fontWeight: 'bold',
   },
   detailsText: {
     color: '#000',
   },
-  iconsContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
+  iconsContainer: {},
   iconWithText: {
     alignItems: 'center',
     paddingVertical: 16,
@@ -303,12 +292,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginVertical: 2,
-  },
-  verticalLine: {
-    width: 1,
-    height: '100%',
-    backgroundColor: 'grey',
-    marginHorizontal: 10,
   },
 });
 

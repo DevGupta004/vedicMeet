@@ -8,7 +8,7 @@ const HeaderComponent = () => {
         style={styles.logo}
         source={require('../../assets/logo.png')}></Image>
       <Text style={styles.appName}>VedicMeet</Text>
-      <IconComponent style={styles.menuButton} name={'ellipsis-v'} size={24} type={1} />
+      <IconComponent style={styles.menuButton} name={'ellipsis-v'} color={'#3b302f'} size={24} type={1} />
     </View>
   );
 };

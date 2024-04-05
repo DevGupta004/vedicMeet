@@ -10,9 +10,9 @@ export default HomeOptions = (props) => {
       }
 
   const iconsData = [
-    {name: 'newspaper-outline', text: 'Contacts', size: 40, color: '#dea74f', type: 0},
-    {name: 'image', text: 'Gallery', size: 40, color: '#3b302f', type: 1},
-    {name: 'map-marker-alt', text: 'map', size: 40, color: 'gray', type: 1},
+    {name: 'newspaper-outline', text: 'Contacts', size: 32, color: '#dea74f', type: 0},
+    {name: 'image-outline', text: 'Gallery', size: 32, color: '#3b302f', type: 0},
+    {name: 'map-marker-alt', text: 'map', size: 28, color: '#d7d6d6', type: 1},
     {name: 'id-card-alt', text: 'Shortlisted', size: 40, color: '#3b302f', type: 1, function:showShortListedItem},
     {name: 'sort-amount-down-alt', text: 'Short', size: 40, color: '#3b302f', type: 1},
   ];
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 20,
+    // marginHorizontal: 20,
     marginVertical: 20,
   },
   leftSideIconContainer: {
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gap: {
-    width: 32,
+    width: 80,
   },
   iconWithText: {
     alignItems: 'center',
